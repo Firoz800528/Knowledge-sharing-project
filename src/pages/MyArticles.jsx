@@ -74,28 +74,27 @@ export default function MyArticles() {
   }
 
   async function handleEditSubmit(e) {
-  e.preventDefault();
-  try {
-    const updated = {
-      ...editForm,
-      tags: editForm.tags.split(',').map(tag => tag.trim()).filter(Boolean),
-    };
+    e.preventDefault();
+    try {
+      const updated = {
+        ...editForm,
+        tags: editForm.tags.split(',').map(tag => tag.trim()).filter(Boolean),
+      };
 
-    await api.put(`/articles/${editingArticle._id}`, updated);
+      await api.put(`/articles/${editingArticle._id}`, updated);
 
-    toast.success('Article updated successfully!');
-    setIsClosing(true);
+      toast.success('Article updated successfully!');
+      setIsClosing(true);
 
-    setTimeout(() => {
-      closeEditModal();
-      window.location.reload();
-    }, 300);
-  } catch (error) {
-    toast.error('Failed to update article');
-    console.error('Update failed:', error.response || error);
+      setTimeout(() => {
+        closeEditModal();
+        window.location.reload();
+      }, 300);
+    } catch (error) {
+      toast.error('Failed to update article');
+      console.error('Update failed:', error.response || error);
+    }
   }
-}
-
 
   if (!currentUser) {
     return (
@@ -110,19 +109,18 @@ export default function MyArticles() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">My Articles</h2>
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center sm:text-left">My Articles</h2>
 
       {articles.length === 0 ? (
-        <p className="text-gray-600">You have not posted any articles yet.</p>
+        <p className="text-gray-600 text-center">You have not posted any articles yet.</p>
       ) : (
-        <div className="grid gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {articles.map(article => (
             <div
               key={article._id}
-              className={`border p-4 rounded-lg shadow-sm bg-white cursor-pointer ${
-                article._id === expandedArticleId ? 'ring-4 ring-blue-300' : ''
-              }`}
+              className={`border p-4 rounded-lg shadow-sm bg-white cursor-pointer flex flex-col justify-between
+                ${article._id === expandedArticleId ? 'ring-4 ring-blue-300' : ''}`}
               onClick={() => toggleExpand(article._id)}
               role="button"
               tabIndex={0}
@@ -130,40 +128,40 @@ export default function MyArticles() {
                 if (e.key === 'Enter' || e.key === ' ') toggleExpand(article._id);
               }}
             >
-              <h3 className="text-xl font-semibold text-gray-800">{article.title}</h3>
-              <small className="text-gray-500 block mb-2">
-                {new Date(article.createdAt).toLocaleDateString()}
-              </small>
-              <p className="text-gray-700 mb-4">{article.content.slice(0, 150)}...</p>
+              <div>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 truncate">{article.title}</h3>
+                <small className="text-gray-500 block mb-2">{new Date(article.createdAt).toLocaleDateString()}</small>
+                <p className="text-gray-700 mb-4 line-clamp-3 sm:line-clamp-5">{article.content}</p>
+              </div>
 
               {article._id === expandedArticleId && (
-                <div className="mt-2 p-2 bg-gray-50 border rounded text-gray-700">
+                <div className="mt-2 p-3 bg-gray-50 border rounded text-gray-700 text-sm sm:text-base">
                   <p><strong>Full Content:</strong></p>
-                  <p>{article.content}</p>
+                  <p className="mb-2">{article.content}</p>
                   <p><strong>Category:</strong> {article.category || 'None'}</p>
                   <p><strong>Tags:</strong> {article.tags?.join(', ') || 'None'}</p>
                 </div>
               )}
 
               <div
-                className="flex gap-3 mt-4"
+                className="flex flex-wrap gap-3 mt-4"
                 onClick={e => e.stopPropagation()}
               >
                 <Link
                   to={`/article/${article._id}`}
-                  className="px-4 py-1 text-sm bg-gray-200 hover:bg-gray-300 text-gray-800 rounded"
+                  className="px-4 py-2 text-sm sm:text-base bg-gray-200 hover:bg-gray-300 text-gray-800 rounded transition"
                 >
                   View
                 </Link>
                 <button
                   onClick={() => openEditModal(article)}
-                  className="px-4 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded"
+                  className="px-4 py-2 text-sm sm:text-base bg-blue-600 hover:bg-blue-700 text-white rounded transition"
                 >
                   Update
                 </button>
                 <button
                   onClick={() => handleDelete(article._id)}
-                  className="px-4 py-1 text-sm bg-red-500 hover:bg-red-600 text-white rounded"
+                  className="px-4 py-2 text-sm sm:text-base bg-red-500 hover:bg-red-600 text-white rounded transition"
                 >
                   Delete
                 </button>
@@ -175,27 +173,30 @@ export default function MyArticles() {
 
       {editingArticle && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 transition-opacity duration-300 overflow-auto p-4 sm:p-6 ${
             isClosing ? 'opacity-0' : 'opacity-100'
           }`}
+          aria-modal="true"
+          role="dialog"
+          tabIndex={-1}
         >
           <div
-            className={`bg-white p-6 rounded-lg w-full max-w-lg transform transition-all duration-300 ${
-              isClosing ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
-            }`}
+            className={`bg-white rounded-lg w-full max-w-lg max-h-full overflow-auto p-6 sm:p-8
+              transform transition-all duration-300
+              ${isClosing ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}
           >
-            <h3 className="text-xl font-semibold mb-4">Edit Article</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4">Edit Article</h3>
             <form onSubmit={handleEditSubmit} className="grid gap-4">
               <input
                 type="text"
-                className="border p-2 rounded"
+                className="border p-2 rounded text-base sm:text-lg"
                 placeholder="Title"
                 value={editForm.title}
                 onChange={e => setEditForm({ ...editForm, title: e.target.value })}
                 required
               />
               <textarea
-                className="border p-2 rounded"
+                className="border p-2 rounded text-base sm:text-lg"
                 placeholder="Content"
                 rows={6}
                 value={editForm.content}
@@ -204,30 +205,30 @@ export default function MyArticles() {
               />
               <input
                 type="text"
-                className="border p-2 rounded"
+                className="border p-2 rounded text-base sm:text-lg"
                 placeholder="Category"
                 value={editForm.category}
                 onChange={e => setEditForm({ ...editForm, category: e.target.value })}
               />
               <input
                 type="text"
-                className="border p-2 rounded"
+                className="border p-2 rounded text-base sm:text-lg"
                 placeholder="Tags (comma separated)"
                 value={editForm.tags}
                 onChange={e => setEditForm({ ...editForm, tags: e.target.value })}
               />
 
-              <div className="flex justify-end gap-3 mt-4">
+              <div className="flex flex-wrap justify-end gap-3 mt-4">
                 <button
                   type="button"
-                  className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded"
+                  className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-sm sm:text-base"
                   onClick={closeEditModal}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm sm:text-base"
                 >
                   Save Changes
                 </button>

@@ -18,31 +18,33 @@ export default function Home() {
 
         const resCategories = await api.get('/articles/categories');
         setCategories(resCategories.data);
-
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
     }
+
     fetchData();
   }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 text-gray-800 dark:text-gray-100">
 
-      <section className="text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-16 px-6 rounded-xl shadow-md">
-        <h1 className="text-4xl font-bold mb-4">Share Your Knowledge</h1>
-        <p className="text-lg mb-6">Discover articles and share your ideas with others.</p>
+      <section className="text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-14 sm:py-16 px-4 sm:px-6 rounded-xl shadow-md">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Share Your Knowledge</h1>
+        <p className="text-base sm:text-lg mb-6 max-w-2xl mx-auto">
+          Discover articles and share your ideas with others.
+        </p>
         <Link
           to="/all-articles"
-          className="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition"
+          className="inline-block bg-white text-blue-700 font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg hover:bg-gray-100 transition"
         >
           Explore Articles
         </Link>
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-6">Featured Articles</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">Featured Articles</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map(article => (
             <Link
               to={`/article/${article._id}`}
@@ -65,8 +67,8 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-6">Categories</h2>
-        <div className="flex flex-wrap gap-3">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">Categories</h2>
+        <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
           {categories.map(cat => (
             <Link
               to={`/all-articles?category=${encodeURIComponent(cat)}`}
@@ -79,20 +81,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray-100 dark:bg-gray-900 rounded-xl p-8 shadow-sm">
-        <h2 className="text-2xl font-semibold mb-6 text-center">How It Works</h2>
-        <div className="grid gap-6 md:grid-cols-3 text-center">
+      <section className="bg-gray-100 dark:bg-gray-900 rounded-xl p-6 sm:p-8 shadow-sm">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-8 text-center">How It Works</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 text-center">
           <div>
             <h3 className="font-bold text-lg mb-2">1. Read Articles</h3>
-            <p className="text-gray-600 dark:text-gray-300">Explore a wide range of knowledge shared by the community.</p>
+            <p className="text-gray-600 dark:text-gray-300">
+              Explore a wide range of knowledge shared by the community.
+            </p>
           </div>
           <div>
             <h3 className="font-bold text-lg mb-2">2. Join the Discussion</h3>
-            <p className="text-gray-600 dark:text-gray-300">Comment, like, and interact with other readers and authors.</p>
+            <p className="text-gray-600 dark:text-gray-300">
+              Comment, like, and interact with other readers and authors.
+            </p>
           </div>
           <div>
             <h3 className="font-bold text-lg mb-2">3. Share Your Ideas</h3>
-            <p className="text-gray-600 dark:text-gray-300">Create and publish your own articles to help others learn.</p>
+            <p className="text-gray-600 dark:text-gray-300">
+              Create and publish your own articles to help others learn.
+            </p>
           </div>
         </div>
       </section>

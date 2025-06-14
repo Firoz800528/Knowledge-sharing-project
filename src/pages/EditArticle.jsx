@@ -67,49 +67,64 @@ export default function EditArticle() {
     }
   }
 
-  if (!currentUser) return <p className="text-center mt-10 text-gray-500">Please login to edit articles.</p>;
+  if (!currentUser) {
+    return (
+      <p className="text-center mt-10 text-gray-500 text-base sm:text-lg">
+        Please login to edit articles.
+      </p>
+    );
+  }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 mt-10 bg-white rounded-xl shadow">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">Edit Article</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Article Title"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <textarea
-          rows="10"
-          placeholder="Article Content"
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          required
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          type="text"
-          placeholder="Tags (comma separated)"
-          value={tags}
-          onChange={e => setTags(e.target.value)}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-        >
-          Update Article
-        </button>
-      </form>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="bg-white rounded-xl shadow-md p-5 sm:p-8">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center sm:text-left">
+          Edit Article
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            type="text"
+            placeholder="Article Title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <textarea
+            rows="8"
+            placeholder="Article Content"
+            value={content}
+            onChange={e => setContent(e.target.value)}
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <input
+            type="text"
+            placeholder="Category"
+            value={category}
+            onChange={e => setCategory(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <input
+            type="text"
+            placeholder="Tags (comma separated)"
+            value={tags}
+            onChange={e => setTags(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <button
+            type="submit"
+            className="w-full sm:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base"
+          >
+            Update Article
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

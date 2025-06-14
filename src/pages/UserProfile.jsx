@@ -56,42 +56,55 @@ export default function UserProfile() {
       <Navbar />
 
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-10 text-gray-800 dark:text-gray-100">
-        <div className="flex items-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <img
             src={updatedPhoto || user?.photoURL}
             alt="profile"
-            className="w-20 h-20 rounded-full object-cover border"
+            className="w-24 h-24 rounded-full object-cover border"
           />
-          <div>
+          <div className="flex-1 w-full max-w-lg">
             {editMode ? (
-              <>
+              <div className="space-y-4">
                 <input
                   type="text"
-                  className="block mb-2 p-2 border rounded"
+                  placeholder="Name"
+                  className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
                   value={updatedName}
                   onChange={(e) => setUpdatedName(e.target.value)}
                 />
                 <input
                   type="text"
-                  className="block mb-2 p-2 border rounded"
+                  placeholder="Photo URL"
+                  className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
                   value={updatedPhoto}
                   onChange={(e) => setUpdatedPhoto(e.target.value)}
                 />
-                <button onClick={handleUpdate} className="btn btn-primary">
-                  Save
-                </button>
-              </>
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleUpdate}
+                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditMode(false)}
+                    className="flex-1 px-4 py-2 border border-gray-400 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             ) : (
               <>
                 <h2 className="text-2xl font-bold">{user?.displayName}</h2>
-                <p>{user?.email}</p>
+                <p className="text-gray-600 dark:text-gray-400">{user?.email}</p>
                 <button
                   onClick={() => {
-                    setUpdatedName(user?.displayName);
-                    setUpdatedPhoto(user?.photoURL);
+                    setUpdatedName(user?.displayName || '');
+                    setUpdatedPhoto(user?.photoURL || '');
                     setEditMode(true);
                   }}
-                  className="btn btn-outline mt-2"
+                  className="mt-3 px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 dark:hover:bg-blue-900 transition"
                 >
                   Edit Profile
                 </button>
@@ -101,15 +114,20 @@ export default function UserProfile() {
         </div>
 
         <section>
-          <h3 className="text-xl font-semibold mb-3">My Articles</h3>
+          <h3 className="text-xl font-semibold mb-4">My Articles</h3>
           {articles.length === 0 ? (
-            <p>No articles posted yet.</p>
+            <p className="text-gray-600 dark:text-gray-400">No articles posted yet.</p>
           ) : (
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {articles.map((a) => (
-                <li key={a._id} className="border p-4 rounded">
-                  <h4 className="font-medium">{a.title}</h4>
-                  <small>{new Date(a.createdAt).toLocaleDateString()}</small>
+                <li
+                  key={a._id}
+                  className="border border-gray-300 dark:border-gray-700 p-4 rounded hover:shadow-md transition"
+                >
+                  <h4 className="font-medium text-lg">{a.title}</h4>
+                  <small className="text-gray-500 dark:text-gray-400">
+                    {new Date(a.createdAt).toLocaleDateString()}
+                  </small>
                 </li>
               ))}
             </ul>

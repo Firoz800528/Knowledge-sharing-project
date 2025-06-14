@@ -58,8 +58,8 @@ export default function PostArticle() {
   const categoryOptions = ['Technology', 'Health', 'Education', 'Science', 'Lifestyle', 'Others'];
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mt-6">
-      <h2 className="text-2xl font-semibold mb-6">Post New Article</h2>
+    <div className="max-w-3xl w-full mx-auto p-6 bg-white rounded-lg shadow-md mt-6 sm:p-8 md:p-10">
+      <h2 className="text-2xl font-semibold mb-6 text-center sm:text-left">Post New Article</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
         <input
           type="text"
@@ -67,7 +67,7 @@ export default function PostArticle() {
           value={title}
           onChange={e => setTitle(e.target.value)}
           required
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
 
         <textarea
@@ -76,14 +76,14 @@ export default function PostArticle() {
           value={content}
           onChange={e => setContent(e.target.value)}
           required
-          className="w-full px-4 py-2 border border-gray-300 rounded resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded resize-y focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
 
         <select
           value={category}
           onChange={e => setCategory(e.target.value)}
           required
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         >
           <option value="">Select Category</option>
           {categoryOptions.map(cat => (
@@ -96,7 +96,7 @@ export default function PostArticle() {
           placeholder="Tags (comma separated)"
           value={tags}
           onChange={e => setTags(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
 
         <input
@@ -104,23 +104,25 @@ export default function PostArticle() {
           placeholder="Thumbnail Image URL"
           value={thumbnail}
           onChange={e => setThumbnail(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
 
         <input
           type="date"
           value={date}
           onChange={e => setDate(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
 
         <div className="text-sm text-gray-600">
-          <p><strong>Posting as:</strong> {currentUser.displayName || 'Anonymous'} ({currentUser.email})</p>
+          <p>
+            <strong>Posting as:</strong> {currentUser.displayName || 'Anonymous'} ({currentUser.email})
+          </p>
         </div>
 
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition"
+          className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition"
         >
           Post Article
         </button>
