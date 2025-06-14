@@ -29,8 +29,6 @@ To create a secure and engaging platform for students to share knowledge and ide
 - 🔐 JWT-secured private routes
 - 🔍 Filter articles by category or tags
 - 🌙 Light/Dark theme toggle
-- 🧑‍🤝‍🧑 Top contributors section (based on comment count)
-- 🖋️ Rich text editor (Jodit)
 - 📱 Fully responsive design
 - 🧑‍💼 User profile management and article history
 

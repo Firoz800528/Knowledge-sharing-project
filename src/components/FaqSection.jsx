@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -32,7 +33,12 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12 text-gray-800 dark:text-gray-100">
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-7xl mx-auto px-4 py-12 text-gray-800 dark:text-gray-100"
+    >
       <h2 className="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
@@ -47,14 +53,24 @@ export default function FaqSection() {
               <span>{faq.question}</span>
               {openIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </button>
-            {openIndex === index && (
-              <div className="px-6 py-4 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300">
-                <p>{faq.answer}</p>
-              </div>
-            )}
+
+            <AnimatePresence initial={false}>
+              {openIndex === index && (
+                <motion.div
+                  key="content"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="px-6 py-4 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300"
+                >
+                  <p>{faq.answer}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

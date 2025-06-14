@@ -3,6 +3,7 @@ import api from '../api/api';
 import { useParams, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ArticleDetails() {
   const { id } = useParams();
@@ -141,7 +142,12 @@ export default function ArticleDetails() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+    >
       <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
         {article.title}
       </h1>
@@ -184,9 +190,12 @@ export default function ArticleDetails() {
       </div>
 
       <div className="mb-10">
-        <button
+        <motion.button
           onClick={handleLike}
           disabled={likeLoading}
+          whileTap={{ scale: 0.9 }}
+          animate={{ scale: userLiked ? 1.1 : 1 }}
+          transition={{ type: 'spring', stiffness: 300 }}
           className={`text-lg px-4 py-2 rounded transition ${
             userLiked ? 'text-red-600' : 'text-gray-500 hover:text-red-500'
           } ${likeLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -194,7 +203,7 @@ export default function ArticleDetails() {
           aria-label={userLiked ? 'Unlike article' : 'Like article'}
         >
           {userLiked ? '❤️ Liked' : '🤍 Like'} ({likesCount})
-        </button>
+        </motion.button>
       </div>
 
       <section className="bg-gray-50 p-4 sm:p-6 rounded-xl shadow">
@@ -206,29 +215,44 @@ export default function ArticleDetails() {
           <p className="text-gray-500">No comments yet. Be the first to comment!</p>
         )}
 
-        <ul className="space-y-4 mb-6">
-          {comments.map((c, index) => (
-            <li key={c._id || index} className="border-b pb-3">
-              <div className="flex items-start gap-3">
-                <img
-                  src={c.user_photo || '/default-profile.png'}
-                  alt={c.user_name}
-                  className="w-8 h-8 rounded-full mt-1"
-                />
-                <div>
-                  <p className="font-medium">{c.user_name}</p>
-                  <p className="text-gray-700 text-sm">{c.comment}</p>
-                  <small className="text-gray-400 text-xs">
-                    {new Date(c.createdAt).toLocaleString()}
-                  </small>
+        <AnimatePresence>
+          <ul className="space-y-4 mb-6">
+            {comments.map((c, index) => (
+              <motion.li
+                key={c._id || index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.2, delay: index * 0.05 }}
+                className="border-b pb-3"
+              >
+                <div className="flex items-start gap-3">
+                  <img
+                    src={c.user_photo || '/default-profile.png'}
+                    alt={c.user_name}
+                    className="w-8 h-8 rounded-full mt-1"
+                  />
+                  <div>
+                    <p className="font-medium">{c.user_name}</p>
+                    <p className="text-gray-700 text-sm">{c.comment}</p>
+                    <small className="text-gray-400 text-xs">
+                      {new Date(c.createdAt).toLocaleString()}
+                    </small>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </motion.li>
+            ))}
+          </ul>
+        </AnimatePresence>
 
         {currentUser ? (
-          <form onSubmit={handleCommentSubmit} className="space-y-4">
+          <motion.form
+            onSubmit={handleCommentSubmit}
+            className="space-y-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
             <label htmlFor="comment" className="sr-only">
               Add your comment
             </label>
@@ -247,7 +271,7 @@ export default function ArticleDetails() {
             >
               Submit Comment
             </button>
-          </form>
+          </motion.form>
         ) : (
           <p className="text-gray-600">
             Please{' '}
@@ -258,6 +282,6 @@ export default function ArticleDetails() {
           </p>
         )}
       </section>
-    </div>
+    </motion.div>
   );
 }

@@ -8,6 +8,22 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  show: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.95 },
+};
+
 export default function AllArticles() {
   const query = useQuery();
   const navigate = useNavigate();
@@ -50,15 +66,26 @@ export default function AllArticles() {
     navigate(cat ? `/all-articles?category=${encodeURIComponent(cat)}` : `/all-articles`);
   }
 
-
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">All Articles</h2>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+    >
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+        All Articles
+      </h2>
 
-      <div className="flex flex-wrap justify-center mb-8 gap-3">
+      <motion.div
+        className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         <button
           onClick={() => onCategoryClick('')}
-          className={`px-4 py-2 rounded ${
+          className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded text-sm sm:text-base ${
             selectedCategory === '' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
           }`}
         >
@@ -68,54 +95,57 @@ export default function AllArticles() {
           <button
             key={cat}
             onClick={() => onCategoryClick(cat)}
-            className={`px-4 py-2 rounded ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded text-sm sm:text-base ${
               selectedCategory === cat ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
             }`}
           >
             {cat}
           </button>
         ))}
-      </div>
+      </motion.div>
 
       {loading ? (
         <p className="text-center text-gray-500">Loading...</p>
       ) : articles.length === 0 ? (
         <p className="text-center text-gray-500">No articles found.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-  {articles.map(article => (
-    <motion.div
-      key={article._id}
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.2 }}
-      className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-shadow flex flex-col"
-    >
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">{article.title}</h3>
-      <p className="text-sm text-gray-500 mb-2">
-        By {article.author_name} on {new Date(article.createdAt).toLocaleDateString()}
-      </p>
-      <p className="text-gray-700 mb-4 flex-grow">
-        {article.content.slice(0, 150)}...
-      </p>
-      <p className="text-xs italic mb-4 text-gray-400">{article.category}</p>
-      <div className="flex">
-        <Link
-          to={`/article/${article._id}`}
-          className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition w-full text-center"
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
         >
-          Read More
-        </Link>
-      </div>
-    </motion.div>
-  ))}
-</AnimatePresence>
-
-        </div>
+          <AnimatePresence>
+            {articles.map(article => (
+              <motion.div
+                key={article._id}
+                layout
+                variants={itemVariants}
+                transition={{ duration: 0.2 }}
+                className="bg-white shadow-md rounded-xl p-5 flex flex-col hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1 line-clamp-2">
+                  {article.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500 mb-2">
+                  By {article.author_name} on{' '}
+                  {new Date(article.createdAt).toLocaleDateString()}
+                </p>
+                <p className="text-sm text-gray-700 mb-3 flex-grow line-clamp-3">
+                  {article.content}
+                </p>
+                <p className="text-xs italic text-gray-400 mb-3">{article.category}</p>
+                <Link
+                  to={`/article/${article._id}`}
+                  className="bg-blue-600 text-white px-4 py-2 text-sm sm:text-base rounded hover:bg-blue-700 transition text-center"
+                >
+                  Read More
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }
