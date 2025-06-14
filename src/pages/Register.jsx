@@ -33,7 +33,7 @@ export default function Register() {
     }
 
     try {
-      const userCredential = await register(email, password, name, photoURL);
+      const userCredential = await register(email, password, name, photoURL || undefined);
       if (userCredential.user) {
         Swal.fire({
           icon: 'success',
@@ -68,7 +68,7 @@ export default function Register() {
           required
         />
         <input
-          type="url"
+          type="text"
           placeholder="Photo URL (optional)"
           value={photoURL}
           onChange={(e) => setPhotoURL(e.target.value)}
