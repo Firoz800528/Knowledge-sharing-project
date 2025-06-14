@@ -1,12 +1,117 @@
-# React + Vite
+# 📚 Knowledge Sharing Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack MERN (MongoDB, Express.js, React, Node.js) web application where students can publish articles, comment on others' posts, and engage in meaningful discussions. Authentication is handled using Firebase, and the platform is secured using JWT. The project is fully responsive and designed for an excellent user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Site
 
-## Expanding the ESLint configuration
+🔗 https://knowledge-sharing-platfo-44028.web.app
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🌐 Server Site
+
+🔗 https://knowshare-lime.vercel.app
+
+---
+
+## 🎯 Purpose
+
+To create a secure and engaging platform for students to share knowledge and ideas through articles and discussions. Users can browse content freely, but posting, commenting, and managing articles require authentication.
+
+---
+
+## 🚀 Key Features
+
+- 📰 Public article browsing (no login required)
+- 📝 Authenticated users can post, update, and delete their own articles
+- 💬 Commenting system (with database storage)
+- ❤️ Like feature for articles
+- 🔐 JWT-secured private routes
+- 🔍 Filter articles by category or tags
+- 🌙 Light/Dark theme toggle
+- 🧑‍🤝‍🧑 Top contributors section (based on comment count)
+- 🖋️ Rich text editor (Jodit)
+- 📱 Fully responsive design
+- 🧑‍💼 User profile management and article history
+
+---
+
+## 🛠️ Tech Stack
+
+### 🔧 Frontend
+
+- React
+- React Router DOM
+- Tailwind CSS
+- Firebase Auth
+- Axios
+- Jodit React (Rich Text Editor)
+- AOS or Framer Motion (for animations)
+- React Toastify
+
+### 🖥️ Backend
+
+- Node.js
+- Express.js
+- MongoDB (Native Driver)
+- Firebase Admin SDK
+- JSON Web Tokens (JWT)
+- dotenv
+- cors
+
+---
+
+## 📦 NPM Packages Used
+
+### Client
+
+- `react`
+- `react-dom`
+- `react-router-dom`
+- `firebase`
+- `axios`
+- `jodit-react`
+- `aos` / `framer-motion`
+- `react-toastify`
+- `classnames`
+
+### Server
+
+- `express`
+- `mongodb`
+- `cors`
+- `dotenv`
+- `firebase-admin`
+- `jsonwebtoken`
+
+---
+
+## 🔐 Security
+
+- Firebase config stored in environment variables
+- MongoDB URI and Firebase Admin credentials protected in `.env`
+- Backend APIs protected with custom `verifyJWT` middleware
+
+---
+
+## 🧪 Deployment Checklist
+
+- ✅ All routes work on page reload (no 404 or CORS errors)
+- ✅ Firebase domains configured for login
+- ✅ No redirects to login on refresh of private routes
+- ✅ `.env` and sensitive keys excluded from GitHub
+
+---
+
+## 📜 License
+
+This project is for educational purposes as part of an assignment. Do not copy without permission.
+
+---
+
+## ✍️ Author
+
+Developed by [Md. Firozzaman]  
+🔗 [GitHub Repository - Client](https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528)  
+
+🔗 [GitHub Repository - Server](https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-Firoz800528)
