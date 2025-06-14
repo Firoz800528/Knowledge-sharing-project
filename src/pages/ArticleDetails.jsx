@@ -4,6 +4,7 @@ import { useParams, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { motion, AnimatePresence } from 'framer-motion';
+import Loading from '../components/Loading';
 
 export default function ArticleDetails() {
   const { id } = useParams();
@@ -135,7 +136,7 @@ export default function ArticleDetails() {
   }
 
   if (loading)
-    return <p className="text-center mt-10 text-gray-500">Loading...</p>;
+    return <Loading />;
 
   if (!article && !currentUser) {
     return <Navigate to="/login" state={{ from: location }} replace />;

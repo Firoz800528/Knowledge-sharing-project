@@ -3,6 +3,7 @@ import api from '../api/api';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { motion, AnimatePresence } from 'framer-motion';
+import Loading from '../components/Loading';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -105,7 +106,7 @@ export default function AllArticles() {
       </motion.div>
 
       {loading ? (
-        <p className="text-center text-gray-500">Loading...</p>
+        <Loading />
       ) : articles.length === 0 ? (
         <p className="text-center text-gray-500">No articles found.</p>
       ) : (
