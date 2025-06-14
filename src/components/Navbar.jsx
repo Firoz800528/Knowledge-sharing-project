@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import DarkLightToggle from './DarkLightToggle';
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
@@ -87,6 +88,8 @@ export default function Navbar() {
             <NavLink to="/about" className={({ isActive }) => isActive ? 'text-blue-600' : ''}>About Us</NavLink>
           </li>
         </ul>
+
+        <DarkLightToggle />
 
         <div className="flex items-center space-x-4">
           {!currentUser ? (
