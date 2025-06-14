@@ -54,15 +54,14 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className="bg-white shadow-md ">
+    <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link
-  to="/"
-  className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap"
->
-  Know<span className="text-[#2957FA]">Share</span>
-</Link>
-
+          to="/"
+          className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap"
+        >
+          Know<span className="text-[#2957FA]">Share</span>
+        </Link>
 
         <ul className="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
           <li>
@@ -89,9 +88,10 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <DarkLightToggle />
-
         <div className="flex items-center space-x-4">
+          
+          <DarkLightToggle />
+
           {!currentUser ? (
             <Link
               to="/login"
@@ -155,19 +155,9 @@ export default function Navbar() {
               xmlns="http://www.w3.org/2000/svg"
             >
               {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
