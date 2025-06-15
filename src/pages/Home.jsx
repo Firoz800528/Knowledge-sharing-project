@@ -3,6 +3,7 @@ import api from '../api/api';
 import { Link } from 'react-router-dom';
 import FaqSection from '../components/FaqSection';
 import { motion } from 'framer-motion';
+import TopContributors from '../components/TopContributors';
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
@@ -48,7 +49,7 @@ export default function Home() {
       variants={stagger}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 text-gray-800 dark:text-gray-100"
     >
-      
+
       <motion.section
         variants={fadeUp}
         className="text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-14 sm:py-16 px-4 sm:px-6 rounded-xl shadow-md"
@@ -92,6 +93,8 @@ export default function Home() {
           ))}
         </motion.div>
       </section>
+
+            <TopContributors />
 
       <section>
         <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">Categories</h2>
