@@ -3,7 +3,6 @@ import api from '../api/api';
 import { Link } from 'react-router-dom';
 import FaqSection from '../components/FaqSection';
 import { motion } from 'framer-motion';
-import TopContributors from '../components/TopContributors';
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
@@ -93,8 +92,6 @@ export default function Home() {
           ))}
         </motion.div>
       </section>
-
-            <TopContributors />
 
       <section>
         <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">Categories</h2>
