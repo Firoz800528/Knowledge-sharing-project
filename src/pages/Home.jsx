@@ -3,10 +3,13 @@ import api from '../api/api';
 import { Link } from 'react-router-dom';
 import FaqSection from '../components/FaqSection';
 import { motion } from 'framer-motion';
+import Loading from '../components/Loading'; 
+import TopContributors from '../components/TopContributors';
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +24,8 @@ export default function Home() {
         setCategories(resCategories.data);
       } catch (error) {
         console.error('Failed to fetch data:', error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -41,6 +46,8 @@ export default function Home() {
     }
   };
 
+  if (loading) return <Loading />;
+
   return (
     <motion.div
       initial="hidden"
@@ -48,7 +55,6 @@ export default function Home() {
       variants={stagger}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 text-gray-800 dark:text-gray-100"
     >
-
       <motion.section
         variants={fadeUp}
         className="text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-14 sm:py-16 px-4 sm:px-6 rounded-xl shadow-md"
@@ -71,7 +77,7 @@ export default function Home() {
           variants={stagger}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {featured.map((article, idx) => (
+          {featured.map((article) => (
             <motion.div key={article._id} variants={fadeUp}>
               <Link
                 to={`/article/${article._id}`}
@@ -111,6 +117,8 @@ export default function Home() {
           ))}
         </motion.div>
       </section>
+
+      <TopContributors/>
 
       <motion.section
         variants={fadeUp}
