@@ -7,7 +7,7 @@ A full-stack MERN (MongoDB, Express.js, React, Node.js) based web platform for s
 ## 🌐 Live Preview
 
 🔗 **Live Site:** [https://knowledge-sharing-platfo-44028.web.app](https://knowledge-sharing-platfo-44028.web.app)  
-🔗 **GitHub Repo:** [Client Repo](https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528)  
+🔗 **GitHub Repo:** (https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528)  
 
 ---
 
