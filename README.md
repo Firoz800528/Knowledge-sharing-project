@@ -105,7 +105,7 @@ To build a collaborative knowledge-sharing platform for students where they can:
 
 ```bash
 # Client
-git clone https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528.git
+git clone https://github.com/Firoz800528/Knowledge-sharing-project.git
 cd b11a11-client-side-Firoz800528
 npm install
 npm run dev
