@@ -1,8 +1,3 @@
-<!-- Banner -->
-<p align="center">
-  <img src="https://i.imgur.com/EnNl2lu.jpeg" alt="Knowledge Sharing Platform Banner" width="100%" />
-</p>
-
 # 📚 Knowledge Sharing Platform
 
 A full-stack MERN (MongoDB, Express.js, React, Node.js) based web platform for students to publish articles, interact through comments, and engage in topic-based discussions. Designed with a secure authentication flow using Firebase and protected backend routes via JWT, the application ensures both accessibility and security for users.
