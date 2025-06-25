@@ -1,115 +1,119 @@
+<!-- Banner -->
+<p align="center">
+  <img src="https://i.imgur.com/xmwhEUf.png" alt="Knowledge Sharing Platform Banner" width="100%" />
+</p>
+
 # 📚 Knowledge Sharing Platform
 
-A full-stack MERN (MongoDB, Express.js, React, Node.js) web application where students can publish articles, comment on others' posts, and engage in meaningful discussions. Authentication is handled using Firebase, and the platform is secured using JWT. The project is fully responsive and designed for an excellent user experience.
+A full-stack MERN (MongoDB, Express.js, React, Node.js) based web platform for students to publish articles, interact through comments, and engage in topic-based discussions. Designed with a secure authentication flow using Firebase and protected backend routes via JWT, the application ensures both accessibility and security for users.
 
 ---
 
-## 🌐 Live Site
+## 🌐 Live Preview
 
-🔗 https://knowledge-sharing-platfo-44028.web.app
+🔗 **Client Site:** [https://knowledge-sharing-platfo-44028.web.app](https://knowledge-sharing-platfo-44028.web.app)  
+🔗 **Server API:** [https://knowshare-lime.vercel.app](https://knowshare-lime.vercel.app)  
+🔗 **Client GitHub Repo:** [Client Repo](https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528)  
+🔗 **Server GitHub Repo:** [Server Repo](https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-Firoz800528)
 
-## 🌐 Server Site
+---
 
-🔗 https://knowshare-lime.vercel.app
+## 🖼️ Screenshot
+
+![Knowledge Sharing Platform Screenshot](https://i.imgur.com/G1lCrXv.png) <!-- Replace with your own deployed screenshot image URL -->
 
 ---
 
 ## 🎯 Purpose
 
-To create a secure and engaging platform for students to share knowledge and ideas through articles and discussions. Users can browse content freely, but posting, commenting, and managing articles require authentication.
+To build a collaborative knowledge-sharing platform for students where they can:
+- Share educational content and experiences
+- Engage with peers through comments and likes
+- Manage personal articles through a dashboard
 
 ---
 
 ## 🚀 Key Features
 
-- 📰 Public article browsing (no login required)
-- 📝 Authenticated users can post, update, and delete their own articles
-- 💬 Commenting system (with database storage)
-- ❤️ Like feature for articles
-- 🔐 JWT-secured private routes
-- 🔍 Filter articles by category or tags
-- 🌙 Light/Dark theme toggle
-- 📱 Fully responsive design
-- 🧑‍💼 User profile management and article history
+- 📰 Browse public articles without logging in  
+- 🔐 Login/register using Firebase Authentication  
+- 📝 Post, update, or delete your own articles  
+- 💬 Add comments to articles (stored in database)  
+- ❤️ Like/unlike feature for each article  
+- 🔎 Filter articles by tags or categories  
+- 🌙 Light and dark theme toggle  
+- 👤 Profile dashboard with article management  
+- 🔐 JWT-protected private routes  
+- 📱 Mobile responsive UI
 
 ---
 
 ## 🛠️ Tech Stack
 
-### 🔧 Frontend
+### 🎨 Frontend
 
 - React
 - React Router DOM
 - Tailwind CSS
-- Firebase Auth
+- Firebase Authentication
 - Axios
 - Jodit React (Rich Text Editor)
-- AOS or Framer Motion (for animations)
+- AOS / Framer Motion (for animation)
 - React Toastify
 
-### 🖥️ Backend
+### ⚙️ Backend
 
 - Node.js
 - Express.js
-- MongoDB (Native Driver)
+- MongoDB (Native driver)
 - Firebase Admin SDK
-- JSON Web Tokens (JWT)
+- JSON Web Token (JWT)
 - dotenv
 - cors
 
 ---
 
-## 📦 NPM Packages Used
+## 📦 Dependencies
 
-### Client
+### Client-Side
 
-- `react`
-- `react-dom`
-- `react-router-dom`
-- `firebase`
-- `axios`
-- `jodit-react`
-- `aos` / `framer-motion`
-- `react-toastify`
+- `react`  
+- `react-dom`  
+- `react-router-dom`  
+- `firebase`  
+- `axios`  
+- `jodit-react`  
+- `aos` or `framer-motion`  
+- `react-toastify`  
 - `classnames`
 
-### Server
+### Server-Side
 
-- `express`
-- `mongodb`
-- `cors`
-- `dotenv`
-- `firebase-admin`
+- `express`  
+- `mongodb`  
+- `cors`  
+- `dotenv`  
+- `firebase-admin`  
 - `jsonwebtoken`
 
 ---
 
-## 🔐 Security
+## 💻 Installation & Setup
 
-- Firebase config stored in environment variables
-- MongoDB URI and Firebase Admin credentials protected in `.env`
-- Backend APIs protected with custom `verifyJWT` middleware
-
----
-
-## 🧪 Deployment Checklist
-
-- ✅ All routes work on page reload (no 404 or CORS errors)
-- ✅ Firebase domains configured for login
-- ✅ No redirects to login on refresh of private routes
-- ✅ `.env` and sensitive keys excluded from GitHub
+### Prerequisites
+- Node.js
+- npm
+- MongoDB Atlas account
 
 ---
 
-## 📜 License
+### 🔧 Clone and Run Locally
 
-This project is for educational purposes as part of an assignment. Do not copy without permission.
+#### 👉 Clone the repos
 
----
-
-## ✍️ Author
-
-Developed by [Md. Firozzaman]  
-🔗 [GitHub Repository - Client](https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528)  
-
-🔗 [GitHub Repository - Server](https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-Firoz800528)
+```bash
+# Client
+git clone https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Firoz800528.git
+cd b11a11-client-side-Firoz800528
+npm install
+npm run dev
