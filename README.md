@@ -1,6 +1,6 @@
 <!-- Banner -->
 <p align="center">
-  <img src="https://i.imgur.com/xmwhEUf.png" alt="Knowledge Sharing Platform Banner" width="100%" />
+  <img src="https://i.imgur.com/EnNl2lu.jpeg" alt="Knowledge Sharing Platform Banner" width="100%" />
 </p>
 
 # 📚 Knowledge Sharing Platform
@@ -20,7 +20,7 @@ A full-stack MERN (MongoDB, Express.js, React, Node.js) based web platform for s
 
 ## 🖼️ Screenshot
 
-![Knowledge Sharing Platform Screenshot](https://i.imgur.com/G1lCrXv.png) <!-- Replace with your own deployed screenshot image URL -->
+![Knowledge Sharing Platform Screenshot](https://i.imgur.com/EnNl2lu.jpeg) <!-- Replace with your own deployed screenshot image URL -->
 
 ---
 
