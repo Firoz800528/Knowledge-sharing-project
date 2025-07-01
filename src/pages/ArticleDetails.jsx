@@ -149,11 +149,11 @@ export default function ArticleDetails() {
       transition={{ duration: 0.4 }}
       className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
     >
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+      <h1 className="text-2xl sm:text-3xl font-bold text-gray-600 mb-4">
         {article.title}
       </h1>
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-600 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-600 dark:text-white mb-6">
         <div className="flex items-center gap-3">
           <img
             src={article.author_photo || '/default-profile.png'}
@@ -186,7 +186,7 @@ export default function ArticleDetails() {
         </div>
       )}
 
-      <div className="prose prose-sm sm:prose lg:prose-lg max-w-none text-gray-800 mb-8">
+      <div className="prose prose-sm sm:prose lg:prose-lg max-w-none text-gray-600 mb-8">
         {article.content}
       </div>
 

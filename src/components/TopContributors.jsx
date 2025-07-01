@@ -34,7 +34,7 @@ const TopContributors = () => {
   }, []);
 
   if (loading) {
-    return <p className="text-center mt-8">Loading users...</p>;
+    return <p className="text-center max-w-7xl mt-8">Loading users...</p>;
   }
 
   return (

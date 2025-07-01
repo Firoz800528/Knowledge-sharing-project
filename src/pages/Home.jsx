@@ -53,7 +53,7 @@ export default function Home() {
       initial="hidden"
       animate="visible"
       variants={stagger}
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 text-gray-800 dark:text-gray-100"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 text-gray-600 dark:text-white"
     >
       <motion.section
         variants={fadeUp}
@@ -72,7 +72,10 @@ export default function Home() {
       </motion.section>
 
       <section>
-        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">Featured Articles</h2>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center">
+  Featured Articles
+</h2>
+
         <motion.div
           variants={stagger}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -99,8 +102,9 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section>
-        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">Categories</h2>
+      <section className='max-w-7xl'>
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center">Categories</h2>
+
         <motion.div
           variants={stagger}
           className="flex flex-wrap gap-3 justify-center sm:justify-start"

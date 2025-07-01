@@ -54,8 +54,9 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+
+      <div className="container max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link
           to="/"
           className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap"

@@ -37,7 +37,7 @@ export default function FaqSection() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-7xl mx-auto px-4 py-12 text-gray-800 dark:text-gray-100"
+      className="max-w-7xl mx-auto px-4 py-12"
     >
       <h2 className="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
       <div className="space-y-4">
