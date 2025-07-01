@@ -33,6 +33,7 @@ export default function AllArticles() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([]);
+  const [sortOption, setSortOption] = useState('newest');
 
   async function fetchArticles(category = '') {
     setLoading(true);
@@ -46,6 +47,18 @@ export default function AllArticles() {
       if (category) {
         fetchedArticles = fetchedArticles.filter(a => a.category === category);
       }
+
+      // Sorting logic
+      if (sortOption === 'newest') {
+        fetchedArticles.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      } else if (sortOption === 'oldest') {
+        fetchedArticles.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      } else if (sortOption === 'title-asc') {
+        fetchedArticles.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (sortOption === 'title-desc') {
+        fetchedArticles.sort((a, b) => b.title.localeCompare(a.title));
+      }
+
       setArticles(fetchedArticles);
     } catch (error) {
       console.error(error);
@@ -61,7 +74,7 @@ export default function AllArticles() {
 
   useEffect(() => {
     fetchArticles(selectedCategory);
-  }, [selectedCategory]);
+  }, [selectedCategory, sortOption]);
 
   function onCategoryClick(cat) {
     navigate(cat ? `/all-articles?category=${encodeURIComponent(cat)}` : `/all-articles`);
@@ -78,8 +91,9 @@ export default function AllArticles() {
         All Articles
       </h2>
 
+      {/* Category Filter Buttons */}
       <motion.div
-        className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10"
+        className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
@@ -105,6 +119,21 @@ export default function AllArticles() {
         ))}
       </motion.div>
 
+      {/* Sorting Dropdown */}
+      <div className="flex justify-end mb-6">
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          className="border border-gray-300 rounded px-3 py-2 text-sm"
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="title-asc">Title A-Z</option>
+          <option value="title-desc">Title Z-A</option>
+        </select>
+      </div>
+
+      {/* Article Cards */}
       {loading ? (
         <Loading />
       ) : articles.length === 0 ? (
